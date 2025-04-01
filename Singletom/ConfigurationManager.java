@@ -1,14 +1,15 @@
+package Singletom;
 public class ConfigurationManager{
     private static ConfigurationManager instance;
     private String servidor;
     private String porta;
 
-    private configurationManager(){
+    private ConfigurationManager(){
 
     }
 
-    static configurationManager getInstance(){
-        if( instance == nul){
+    public static ConfigurationManager getInstance(){
+        if( instance == null){
             instance = new ConfigurationManager();
         }
         return instance;
@@ -23,12 +24,13 @@ public class ConfigurationManager{
         
     }
 
-    public String getConfig(String Key){
+    public String getConfig(String key){
         if(key == "servidor"){
             return servidor;
         }else if (key == "porta"){
             return porta;
         }
+        return "Desconhecido";
     }
 
     public void showConfigs(){
@@ -39,9 +41,18 @@ public class ConfigurationManager{
             System.out.println("Porta: " + porta);
         }
     }
+
+    public static void main(String[] args){
+        ConfigurationManager c = new ConfigurationManager();
+        ConfigurationManager c1 = new ConfigurationManager();
+        c.setConfig("servidor", "3000");
+        c1.setConfig("servidor", "8080");
+        c.showConfigs();
+        c1.showConfigs();
+
+    
+    }
 }
 
-public static void main(String[] args){
-    ConfiguarationManager c = new ConfiguarationManager();
 
-}
+
